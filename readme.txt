@@ -51,6 +51,7 @@ We're working on that.
 == Screenshots ==
 
 1. The PrettyPress live preview layout.
+2. PrettyPress live preview is resizable.
 
 == Changelog ==
 
