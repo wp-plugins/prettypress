@@ -78,6 +78,15 @@ This has been fixed in version 0.4
 
 == Upgrade Notice ==
 
+= 0.4 =
+* Fixed bug where live preview would not update if PrettyPress was executed before the post was saved.
+* Fixed bug where PrettyPress would not launch if the "visual editor" has been disabled in Wordpress user preferences.
+
+= 0.3 =
+* Fixed raw text / html hooks and support
+* Live preview should now support raw text and html
+* Fixed bug where live preview would not execute if page was loaded without TinyMCE as default active editor
+
 = 0.2 =
 This version fixed styling issues with Wordpress 3.8, as well as window resizing performance.
 
