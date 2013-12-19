@@ -1,17 +1,6 @@
-<?php
 /**
  * @package PrettyPress
  */
-/*
-Plugin Name: PrettyPress
-Plugin URI: https://github.com/evasivesoftware/PrettyPress
-Description: A simple Wordpress publishing layout, focused on writing with a live preview of your future post.
-Version: 0.4
-Author: EvasiveSoftware.com
-Author URI: http://www.evasivesoftware.com/
-License: MIT
-*/
-
 /*
 The MIT License (MIT)
 
@@ -36,11 +25,13 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
-
-//Defend our stuff!
-if ( ! defined('ABSPATH') ) { exit; }
-
-//Load the program.
-require_once 'bootstrap.php';
-
-?>
+jQuery(document).ready(function(){
+	
+	//Check if we need to auto-load PrettyPress.
+	var autoload = jQuery("#prettypress_autoload").val();
+	if ( autoload ) {
+		//Load PrettyPress.
+		prettypress.toggle();
+	}
+	
+});
