@@ -99,24 +99,47 @@ function prettypress_css_hook() {
 	//Register and queue the stylesheet.
 	wp_register_style( 'prettypress_css', PRETTYPRESS_BASE_URL . "/assets/css/prettypress.css", false );
 	wp_enqueue_style( 'prettypress_css' );
-
-	if ( $prettypress_config['legacy'] == "enabled" ) {
-		wp_register_style( 'prettypress_css_legacy', PRETTYPRESS_BASE_URL . "/assets/css/prettypress-legacy.css", false );
-		wp_enqueue_style( 'prettypress_css_legacy' );
-	}
-	
-	
+		
 }
 
 function prettypress_meta_box() {
 
 	//Register the meta boxes for all post types.
-	//It should be possible to register all three with one call.
-	//Fix this.
-	
-	add_meta_box( 'prettypress_meta_hwnd', __( 'PrettyPress', 'prfx-textdomain' ), 'prettypress_meta_hwnd_callback', 'post', 'side', 'high' );
-	add_meta_box( 'prettypress_meta_hwnd', __( 'PrettyPress', 'prfx-textdomain' ), 'prettypress_meta_hwnd_callback', 'page', 'side', 'high' );
-	add_meta_box( 'prettypress_meta_hwnd', __( 'PrettyPress', 'prfx-textdomain' ), 'prettypress_meta_hwnd_callback', 'custom', 'side', 'high' );
+	//Start fresh for an array of post types we want to register PP on
+	$registerOn = array();
+
+	//Add posts and pages by default
+	$registerOn[] = 'post';
+	$registerOn[] = 'page';
+
+	//We also want to automatically add all custom post types
+	$args = array(
+		'public'   => true,
+		'_builtin' => false
+	);
+
+	$publicCPTs = get_post_types( $args, 'names', 'and' );
+
+	if( is_array( $publicCPTs && !empty( $publicCPTs ) ) ) {
+		foreach( $publicCPTs as $key => $cptName ) {
+			$registerOn[] = $cptName;
+		}
+	}
+
+	//Run it through a filter so we can amend this elsehwere
+	$registerOn = apply_filters( 'prettypress_post_types_to_show_metabox', $registerOn );
+
+	// Also have a filter for the location and priority so we're not forcing this
+	$location = apply_filters( 'prettypress_metabox_location', 'side' );
+	$priority = apply_filters( 'prettypress_metabox_priority', 'high' );
+
+	if( !is_array( $registerOn ) || empty( $registerOn ) ) {
+		return;
+	}
+
+	foreach( $registerOn as $key => $cptName ) {
+		add_meta_box( 'prettypress_meta_hwnd', __( 'PrettyPress', 'prfx-textdomain' ), 'prettypress_meta_hwnd_callback', $cptName, $location, $priority );
+	}
 	
 }
 
