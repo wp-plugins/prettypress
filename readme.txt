@@ -99,6 +99,17 @@ This version fixed styling issues with Wordpress 3.8, as well as window resizing
 
 == Arbitrary section ==
 
+List of PrettyPress contributors
+
+Richard Denton - @richard_ddenton
+Richard Tape - @richardtape
+
+eMarketeer Australia
+http://www.emarketeer.com.au
+
+Evasive Software
+http://www.evasivesoftware.com
+
 Other libraries used in this project.
 
 Marked.js - Copyright (c) 2011-2013, Christopher Jeffrey. (MIT License)
