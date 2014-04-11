@@ -3,8 +3,8 @@ Contributors: evasivesoftware
 Donate link: http://evasivesoftware.com/
 Tags: publishing, posting, live, preview, post interface, ghost, markdown
 Requires at least: 3.5
-Tested up to: 3.9 Beta 2
-Stable tag: 1.0.7
+Tested up to: 3.9
+Stable tag: 1.0.8
 License: MIT
 License URI: http://opensource.org/licenses/MIT
 
@@ -61,6 +61,10 @@ We're working on that.
 3. PrettyPress in markdown mode
 
 == Changelog ==
+
+= 1.0.8 =
+* Minor future proofing for 3.9 release
+* Fixed CSS z-indexing to override wordpress sidebar in 3.9RC1
 
 = 1.0.7 =
 * Minor future proofing for 3.9 Beta 1
