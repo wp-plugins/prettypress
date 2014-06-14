@@ -1,8 +1,6 @@
-<?php
 /**
  * @package PrettyPress
  */
-
 /*
 The MIT License (MIT)
 
@@ -27,19 +25,13 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
-
-//Defend our stuff!
-if ( ! defined('ABSPATH') ) { exit; }
-
-define( "PLUGINNAME",					"PrettyPress" );
-define( "PLUGINVERSION", 				"1.0.9" );
-define( "PLUGINCODENAME", 				"Evasive Eel" );
-define( "PLUGINPATH",					dirname(__FILE__) );
-define( "PRETTYPRESS_BASE_URL",			plugins_url( "", __FILE__ ) );
-
-//Load our requirements.
-require_once 'lib/config.php';
-require_once 'lib/settings.php';
-require_once 'lib/hooks.php';
-
-?>
+jQuery(document).ready(function(){
+	
+	//Check if we need to auto-load PrettyPress.
+	var autoload = jQuery("#prettypress_autoload").val();
+	if ( autoload ) {
+		//Load PrettyPress.
+		prettypress.toggle();
+	}
+	
+});
