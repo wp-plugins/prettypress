@@ -101,29 +101,16 @@ function prettypress_css_js_hook() {
 	wp_enqueue_style( 'prettypress_css' );
 	
 	//Register the javascript required.
+
+	//PrettyPress Free
+	wp_register_script( 'prettypress_free_js', PRETTYPRESS_BASE_URL . "/assets/js/prettypress-free.min.js?v=" . PLUGINVERSION, false );	
 	
-	//Markdown related.
-	wp_register_script( 'prettypress_js_to-markdown', PRETTYPRESS_BASE_URL . "/assets/js/third-party/to-markdown.js?v=" . PLUGINVERSION, false );
-	wp_register_script( 'prettypress_js_marked', PRETTYPRESS_BASE_URL . "/assets/js/third-party/marked.js?v=" . PLUGINVERSION, false );
-	wp_register_script( 'prettypress_js_markdown', PRETTYPRESS_BASE_URL . "/assets/js/build/prettypress_markdown.min.js?v=" . PLUGINVERSION, false );
 	
-	//Generic hooks.
-	wp_register_script( 'prettypress_js_prettypress', PRETTYPRESS_BASE_URL . "/assets/js/build/prettypress.min.js?v=" . PLUGINVERSION, false );
-	wp_register_script( 'prettypress_js_hooks', PRETTYPRESS_BASE_URL . "/assets/js/build/prettypress_hooks.min.js?v=" . PLUGINVERSION, false );
-	wp_register_script( 'prettypress_js_resize', PRETTYPRESS_BASE_URL . "/assets/js/build/prettypress_resize.min.js?v=" . PLUGINVERSION, false );
-	wp_register_script( 'prettypress_js_bootloader', PRETTYPRESS_BASE_URL . "/assets/js/build/prettypress_bootloader.min.js?v=" . PLUGINVERSION, false );
-	
-	if ( $prettypress_config['markdown'] == "enabled" ) {
-		wp_enqueue_script( 'prettypress_js_to-markdown' );
-		wp_enqueue_script( 'prettypress_js_marked' );
-		wp_enqueue_script( 'prettypress_js_markdown' );
+	wp_enqueue_script( 'prettypress_free_js' );
+	if ( $prettypress_config['apikey'] ) {
+		wp_enqueue_script( 'prettypress_pro_js' );
 	}
-	
-	wp_enqueue_script( 'prettypress_js_prettypress' );
-	wp_enqueue_script( 'prettypress_js_hooks' );
-	wp_enqueue_script( 'prettypress_js_resize' );
-	wp_enqueue_script( 'prettypress_js_bootloader' );
-		
+
 }
 
 function prettypress_meta_box() {
@@ -144,7 +131,7 @@ function prettypress_meta_box() {
 
 	$publicCPTs = get_post_types( $args, 'names', 'and' );
 
-	if( is_array( $publicCPTs && !empty( $publicCPTs ) ) ) {
+	if( is_array( $publicCPTs ) && !empty( $publicCPTs ) ) {
 		foreach( $publicCPTs as $key => $cptName ) {
 			$registerOn[] = $cptName;
 		}
@@ -215,4 +202,29 @@ function prettypress_thetitle( $title ) {
 	
 }
 
-?>
+function prettypress_post_isnew() {
+
+	//Determines if the post editor is a new page or existing page.
+	if ( empty( $_GET['post'] ) ) {
+		return true;
+	} else {
+		return false;
+	}
+
+}
+
+function prettypress_do_pro() {
+
+	global $prettypress_config;
+
+	//If PrettyPress pro is active, embed it's contents onto the page.
+	//For dev, embed a link to the local build script.
+
+	//Check for a pro .min.js file.
+	if( file_exists( PLUGINPATH . "/assets/js/build/prettypress-pro.min.js" ) ) {
+
+		echo '<script src="' . PRETTYPRESS_BASE_URL . '/assets/js/build/prettypress-pro.min.js"></script>' . "\n";
+
+	}
+
+}

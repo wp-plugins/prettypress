@@ -37,7 +37,6 @@ add_action('admin_menu', 'prettypress_settings_menu');
 function prettypress_settings_menu() {
 
 	//Add the menu
-	//add_menu_page('PrettyPress Settings', 'PrettyPress Settings', 'administrator', __FILE__, 'prettypress_settings_page',plugins_url('/images/icon.png', __FILE__));
 	add_submenu_page( 'options-general.php', 'PrettyPress settings', 'PrettyPress', 'administrator', 'prettypress-settings', 'prettypress_settings_page' );
 
 	//Hook and register settings.
@@ -49,7 +48,7 @@ function prettypress_register_settings() {
 
 	//Register settings.
 	register_setting( 'prettypress-settings-group', 'prettypress_enabled' );
-	register_setting( 'prettypress-settings-group', 'prettypress_markdown' );
+	register_setting( 'prettypress-settings-group', 'prettypress_api' );
 
 }
 

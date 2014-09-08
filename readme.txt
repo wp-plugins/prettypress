@@ -1,40 +1,48 @@
-=== Plugin Name ===
+=== PrettyPress ===
 Contributors: evasivesoftware
 Donate link: http://evasivesoftware.com/
 Tags: publishing, posting, live, preview, post interface, ghost, markdown
 Requires at least: 3.5
-Tested up to: 3.9.1
-Stable tag: 1.0.9
+Tested up to: 4.0
+Stable tag: 1.1.0
 License: MIT
 License URI: http://opensource.org/licenses/MIT
 
-Version 1.0.x - Evasive Eel
-PrettyPress simplifies the default publishing layout, showing users a live front-end preview of their post, as they type.
-You're free to write in WYSIWYG, HTML or Markdown.
+Version 1.1.x - Ferocious Feline
+PrettyPress adds a sleek, modern publishing interface to Wordpress to help you write better articles in less time. Write in markdown, with a real-time live preview of how your post looks right next to your editor.
+
+The visual editor and html is also supported.
+
+[PrettyPress Pro](http://pro.evasivesoftware.com) users can unlock real-time shortcode previews to really enhance your work flow.
 
 == Description ==
 
-#PrettyPress - Making Wordpress composition simple and beautiful.
+#PrettyPress - Real-time Wordpress publishing and previews in markdown.
 
-PrettyPress is an MIT licensed Wordpress plugin that focuses on simplifying the default Wordpress publishing layout.
-It aims to be simple and encourage users to focus on writing - without other un-necessary distractions.
+PrettyPress is a Wordpress plugin that simplifies and smartens the way you write online.
+It rids distractions and bloated features, to give you exactly what you need to write posts quickly:
 
-##Live preview window as you type
+* A markdown editor and parser
+* A real-time live preview of your post
+* A distraction free environment
 
-PrettyPress provides you with a live preview of how your post will look on the front end of the site, as you type.
-It uses some little javascript and jQuery hacks to do this - Bigger posts may be plagued by performance issues.
-This is an issue to be worked on in the near future.
+[PrettyPress Pro](http://pro.evasivesoftware.com) users also have shortcodes executed and previewed in real-time.
 
-##Markdown composition
+##Live preview window, as you type
 
-PrettyPress allows users to compose in Markdown mode for speedy writing and excellent html conversion.
+PrettyPress provides you with a live "front-end" preview of the post you are writing. This means you can write your
+post remaining confident it will look as intended by the end.
+
+##Write in markdown
+
+PrettyPress ships out of the box as a markdown editor. All markdown is converted on the fly, giving you instant previews of your post, as you type.
 
 == Installation ==
 
+
 PrettyPress can be installed like any other WordPress plugin.
 
-
-1. Download the .zip file from either Github or EvasiveSoftware.com directly
+1. Download the .zip file from either Github, EvasiveSoftware.com directly or Wordpress.org
 1. Log into your WordPress website
 1. Go to Plugins -> Add new
 1. Click Upload
@@ -47,20 +55,27 @@ PrettyPress can be installed like any other WordPress plugin.
 
 = PrettyPress breaks the front end preview of my site, what should I do? =
 
-Check that your theme is correctly using the_title_attribute for title="" attributes. If your theme is incorrectly using the_title(),
-PrettyPress hooks will automatically be applied here.
+Check that your theme is correctly using the_title_attribute for title="" attributes. If your theme is incorrectly using the_title(), PrettyPress hooks will automatically be applied here, thus breaking your theme.
 
 = My shortcodes don't execute in the preview window =
 
-We're working on that.
+Live shortcode previews are only available to [PrettyPress Pro](http://pro.evasivesoftware.com) users.
 
 == Screenshots ==
 
-1. The PrettyPress live preview layout.
-2. PrettyPress live preview is resizable.
-3. PrettyPress in markdown mode
+1. PrettyPress in markdown mode.
+2. PrettyPress using TinyMCE.
 
 == Changelog ==
+
+= 1.1.0 =
+* New version release, major changes
+* Complete javascript rewrite. Dropped 95% of jQuery reliance for speed and performance benefits.
+* 24+ bug fixes, mostly related to swapping between editors.
+* [PrettyPress Pro](http://pro.evasivesoftware.com) launched.
+* Added live shortcode previews (Pro only).
+* Compatibility with Wordpress 4.0.
+* Now delivering minified css/js.
 
 = 1.0.9 =
 * Fixed another bug where https was not loaded on https powered site
@@ -101,6 +116,9 @@ We're working on that.
 
 == Upgrade Notice ==
 
+= 1.1.0 =
+The latest release of PrettyPress has a ground up re-write of the core javascript, aimed at speed and performance enhancements. Live shortcode previews are now supported for PrettyPress Pro users.
+
 = 1.0.0 =
 Our latest shipment of PrettyPress now includes a markdown editor, publishing menu from inside PrettyPress, performance enhancements and bug fixes.
 
@@ -127,3 +145,6 @@ https://github.com/chjj/marked
 
 to-markdown is copyright © 2011 Dom Christie and released under the MIT license.
 https://github.com/domchristie/to-markdown
+
+js-beautify - Copyright (c) 2007-2013 Einar Lielmanis and contributors. (MIT License)
+https://github.com/beautify-web/js-beautify
