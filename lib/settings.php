@@ -48,6 +48,7 @@ function prettypress_register_settings() {
 
 	//Register settings.
 	register_setting( 'prettypress-settings-group', 'prettypress_enabled' );
+	register_setting( 'prettypress-settings-group', 'prettypress_markdown_enabled' );
 	register_setting( 'prettypress-settings-group', 'prettypress_api' );
 
 }
@@ -55,7 +56,38 @@ function prettypress_register_settings() {
 function prettypress_settings_page() {
 
 	require_once PLUGINPATH . '/view/prettypress-settings.php';
-	
+
+}
+
+function prettypress_pro_version_js( $hook ) {
+
+	//Hook pro version JS.
+	if ( 'settings_page_prettypress-settings' != $hook ) {
+		return;
+	}
+
+	wp_register_script( 'prettypress_pro_version_js', PRETTYPRESS_BASE_URL . "/assets/js/build/prettypress-pro-version.min.js?v=" . PLUGINVERSION, false );
+	wp_enqueue_script( 'prettypress_pro_version_js' );
+
+}
+
+if ( prettypress_pro_active() ) {
+	add_action( 'admin_enqueue_scripts', 'prettypress_pro_version_js' );
+}
+
+function prettypress_pro_active() {
+
+	global $prettypress_config;
+
+	if (! empty($prettypress_config['apikey']) ) {
+		if ( $prettypress_config['apikey'] == true ) {
+			return true;
+		} else {
+			return false;
+		}
+	} else {
+		return false;
+	}
 }
 
 ?>

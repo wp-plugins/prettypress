@@ -44,6 +44,7 @@ global $post, $prettypress_config, $wp_version;
 		<div id="prettypress_exit" class="prettypress_exit"><div class="dashicons dashicons-no-alt"></div></div>
 		<div id="prettypress_menu_trigger" class="prettypress_menu_trigger"><div class="dashicons dashicons-welcome-write-blog"></div>
 			<div id="prettypress_menu" class="prettypress_menu">
+				<a<?php if ( prettypress_pro_active() ) { ?> class="hidden" <?php } ?> href="http://pro.evasivesoftware.com" target="_blank" id="prettypress_pro_shortcode_link">Shortcode previews</a>
 				<a href="#" class="heading" id="prettypress_screen_trigger">Preview size</a>
 					<a href="#" class="sub-item" id="prettypress_screen_desktop" data-rel="prettypress_preview_size" data-size="desktop">Desktop</a>
 					<a href="#" class="sub-item" id="prettypress_screen_tablet" data-rel="prettypress_preview_size" data-size="tablet">Tablet</a>
@@ -62,13 +63,21 @@ global $post, $prettypress_config, $wp_version;
 			<input id="prettypress_title" class="prettypress_title" placeholder="Enter title here" value="<?php echo $post->post_title; ?>" />
 		</div>
 		<div id="prettypress_tabs" class="prettypress_tabs">
+			<?php if ( $prettypress_config['markdown_enabled'] == "enabled" ) { ?>
 			<a href="#" class="active" data-click="activateTab" data-rel="prettypress_tab_markdown" data-val="markdown">Markdown</a>
-			<a href="#" data-click="activateTab" data-rel="prettypress_tab_visual" data-val="visual">Visual</a>
+			<?php } ?>
+			<a href="#"<?php
+								if ( $prettypress_config['markdown_enabled'] == "disabled" ) { ?>
+									class="active"
+								<?php } ?> data-click="activateTab" data-rel="prettypress_tab_visual" data-val="visual">Visual</a>
 			<a href="#" data-click="activateTab" data-rel="prettypress_tab_html" data-val="html">HTML</a>
 		</div>
 		<div id="prettypress_content" class="prettypress_content">
 
-			<div id="prettypress_tab_markdown" class="prettypress_tab prettypress_tab_active">
+			<div id="prettypress_tab_markdown" class="prettypress_tab <?php
+				if ( $prettypress_config['markdown_enabled'] == "enabled" ) {
+					?>prettypress_tab_active<?php } else { ?>prettypress_disabled_editor<?php	}
+					?>">
 				<textarea id="prettypress_markdown" data-resize="editor" class="prettypress_markdown"></textarea>
 			</div>
 
@@ -76,9 +85,18 @@ global $post, $prettypress_config, $wp_version;
 				<textarea id="prettypress_html" data-resize="editor" class="prettypress_html"></textarea>
 			</div>
 
-			<div id="prettypress_tab_visual" class="prettypress_tab prettypress_tab_visual">
+			<div id="prettypress_tab_visual" class="prettypress_tab prettypress_tab_visual<?php
+				if ( $prettypress_config['markdown_enabled'] == "disabled" ) {
+					?> prettypress_tab_active<?php } ?>">
 				<?php
-					wp_editor('', 'prettypress_tinymce', array('textarea_name' => 'prettypress_tinymce_textarea', 'quicktags' => false ));
+					wp_editor('', 'prettypress_tinymce',
+						array(
+							'textarea_name' => 'prettypress_tinymce_textarea',
+							'quicktags' => false,
+							'wp_autoresize_on' => false,
+							'resize' => true
+						)
+					);
 				?>
 			</div>
 
@@ -150,13 +168,17 @@ global $post, $prettypress_config, $wp_version;
 			},
 			wpContentClone: {
 				id: "content-textarea-clone"
+			},
+			proLink: {
+				id: "prettypress_pro_shortcode_link"
 			}
 		},
 		selectors: {
 			title: "[data-rel=title]",
 			content: "[data-rel=content]"
 		},
-		activeEditor: "markdown"
+		activeEditor: "<?php if ( $prettypress_config['markdown_enabled'] == "enabled" ) { ?>markdown<?php } else { ?>visual<?php } ?>",
+		markdownEnabled: <?php if ( $prettypress_config['markdown_enabled'] == "enabled" ) { ?>true<?php } else { ?>false<?php } ?>
 	});
 
 </script>

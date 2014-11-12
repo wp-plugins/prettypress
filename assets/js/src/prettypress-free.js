@@ -93,7 +93,7 @@ function prettypress( config ) {
 		//Check if values inside TinyMCE have changed since page load.
 		//If they have, update the active PrettyPress editor to match.
 		this.syncWpEditors();
-		
+
 		//Launch the PrettyPress window.
 		jQuery(this.config.elements.wrapper.element).fadeIn(500, function(){
 
@@ -312,7 +312,7 @@ function prettypress( config ) {
 				var value_prefilters = value;
 
 				//Run through shortcodes filter (pro only).
-				if ( typeof(prettypressProActive) === "function" ) { 
+				if ( typeof(prettypressProActive) === "function" ) {
     			value = prettypressFilterShortcodes( value );
     			value = prettypressFilteroEmbeds( value );
 				}
@@ -332,7 +332,7 @@ function prettypress( config ) {
 				var value_prefilters = value;
 
 				//Run through shortcodes filter (pro only).
-				if ( typeof(prettypressProActive) === "function" ) { 
+				if ( typeof(prettypressProActive) === "function" ) {
     			value = prettypressFilterShortcodes( value );
     			value = prettypressFilteroEmbeds( value );
 				}
@@ -352,7 +352,7 @@ function prettypress( config ) {
 				var value_prefilters = value;
 
 				//Run through shortcodes filter (pro only).
-				if ( typeof(prettypressProActive) === "function" ) { 
+				if ( typeof(prettypressProActive) === "function" ) {
     			value = prettypressFilterShortcodes( value );
     			value = prettypressFilteroEmbeds( value );
 				}
@@ -507,7 +507,7 @@ function prettypress( config ) {
 	}
 
 	switchTabs = function( editor, element, tabelement ) {
-		
+
 		if ( this.config.activeEditor === editor) {
 			//Editor already active.
 			return false;
@@ -560,15 +560,24 @@ function prettypress( config ) {
 		}
 
 		//PrettyPress markdown hook.
-		this.config.elements.markdown.element.onkeyup = function(e) {
-			//Do live preview update on markdown.
-			pp.liveUpdate( 'markdown', this.value );
+		if ( this.config.markdownEnabled === true ) {
+			this.config.elements.markdown.element.onkeyup = function(e) {
+				//Do live preview update on markdown.
+				pp.liveUpdate( 'markdown', this.value );
+			}
 		}
 
 		//PrettyPress html hook.
 		this.config.elements.html.element.onkeyup = function(e) {
 			//Do live preview update as html.
 			pp.liveUpdate( 'html', this.value );
+		}
+
+		//PrettyPress pro hook.
+		this.config.elements.proLink.element.onclick = function(e) {
+			e.preventDefault();
+			var win = window.open( this.href, '_blank' );
+			win.focus();
 		}
 
 		//PrettyPress tinymce hook.

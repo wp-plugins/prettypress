@@ -25,12 +25,16 @@ THE SOFTWARE.
 */
 
 
+
 //Build a list of resizable editors.
 var editorResizeList = [];
 
 //Resize width
 var resizeLeftGlobal = null;
 var resizeRightGlobal = null;
+
+//Resize switch.
+var resizeActive = false;
 
 jQuery(document).ready(function(){
 
@@ -53,6 +57,8 @@ jQuery(window).load(function(){
 		editorResizeList.push( this );
 	});
 
+	editorResizeList.push( jQuery("#prettypress_tinymce_ifr") );
+
 	//Resize the window.
 	prettypressHandleResize();
 
@@ -70,15 +76,25 @@ function prettypressHandleResize() {
 	var winHeight = jQuery(window).height();
 	var prettypressLeftColumn = jQuery("#prettypress_leftcolumn");
 	var prettypressResizeHandle = jQuery("#prettypress_resize_handle");
+	var editorOffset = jQuery("#prettypress_tabs").offset().top;
+	var editorOffsetHeight = jQuery("#prettypress_tabs").outerHeight();
+	editorOffset = editorOffset + editorOffsetHeight;
 
 	//Loop through editors that need stretching.
 	for( i=0;i<editorResizeList.length;i++ ) {
 
-		var editorOffset = jQuery(editorResizeList[i]).offset().top;
+		//var editorOffset = jQuery(editorResizeList[i]).offset().top;
 		var padding = parseInt( jQuery(prettypressLeftColumn).css("padding-left"), 10 );
 		var editorHeight = winHeight - padding - editorOffset;
 
-		jQuery(editorResizeList[i]).css("height", editorHeight + "px");
+		if ( jQuery(editorResizeList[i]).attr("id") === "prettypress_tinymce_ifr" ) {
+			editorHeight -= 130;
+			jQuery(editorResizeList[i]).css("min-height", editorHeight + "px");
+		} else {
+			jQuery(editorResizeList[i]).css("height", editorHeight + "px");
+		}
+
+
 
 	}
 
@@ -93,7 +109,13 @@ function prettypressHandleResize() {
 }
 
 function prettypressStartResize() {
-	
+
+	if ( resizeActive === false ) {
+		resizeActive = true;
+	} else {
+		return;
+	}
+
 	//Show the preview windows.
 	jQuery("#prettypress_resize_leftcolumn").show();
 	jQuery("#prettypress_resize_rightcolumn").show();
@@ -103,7 +125,7 @@ function prettypressStartResize() {
 
 		var leftColumn = document.getElementById("prettypress_resize_leftcolumn");
 		var rightColumn = document.getElementById("prettypress_resize_rightcolumn");
-		
+
 		var width = jQuery(window).width();
 		var mouseX = e.clientX;
 
@@ -126,6 +148,12 @@ function prettypressStartResize() {
 
 function prettypressStopResize() {
 
+	if ( resizeActive === true ) {
+		resizeActive = false;
+	} else {
+		return;
+	}
+
 	//Hide the preview windows.
 	jQuery("#prettypress_resize_leftcolumn").hide();
 	jQuery("#prettypress_resize_rightcolumn").hide();
@@ -141,7 +169,7 @@ function prettypressStopResize() {
 		window.setTimeout(function(){
 			prettypressHandleResize();
 		}, 750);
-	
+
 }
 	//Detach mouse move hook.
 	jQuery(window).unbind('mousemove');

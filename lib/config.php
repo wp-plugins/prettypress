@@ -36,10 +36,11 @@ $prettypress_config = Array();
 $prettypress_config['data-identifiers']['title'] = "[data-rel=title]";
 $prettypress_config['data-identifiers']['content'] = "[data-rel=content]";
 $prettypress_config['enabled'] = "enabled";
-$prettypress_config['apikey'] = true; //Remove for free version
+$prettypress_config['apikey'] = false;
 
 //Check for settings from the settings page to override these defaults.
 $tmp_enabled = get_option( 'prettypress_enabled', null );
+$tmp_markdown_enabled = get_option( 'prettypress_markdown_enabled', "enabled" );
 
 
 if ( get_bloginfo('version') < 3.8 ) {
@@ -50,6 +51,10 @@ if ( get_bloginfo('version') < 3.8 ) {
 
 if ( $tmp_enabled ) {
 	$prettypress_config['enabled'] = $tmp_enabled;
+}
+
+if ( $tmp_markdown_enabled ) {
+	$prettypress_config['markdown_enabled'] = $tmp_markdown_enabled;
 }
 
 ?>

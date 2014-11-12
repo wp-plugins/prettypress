@@ -1,10 +1,10 @@
-=== PrettyPress ===
+=== Plugin Name ===
 Contributors: evasivesoftware
-Donate link: http://evasivesoftware.com/
+Donate link: http://pro.evasivesoftware.com/
 Tags: publishing, posting, live, preview, post interface, ghost, markdown
 Requires at least: 3.5
 Tested up to: 4.0
-Stable tag: 1.1.0
+Stable tag: 1.1.1
 License: MIT
 License URI: http://opensource.org/licenses/MIT
 
@@ -13,7 +13,7 @@ PrettyPress adds a sleek, modern publishing interface to Wordpress to help you w
 
 The visual editor and html is also supported.
 
-[PrettyPress Pro](http://pro.evasivesoftware.com) users can unlock real-time shortcode previews to really enhance your work flow.
+[PrettyPress Pro][http://pro.evasivesoftware.com] users can unlock real-time shortcode previews to really enhance your work flow.
 
 == Description ==
 
@@ -26,7 +26,7 @@ It rids distractions and bloated features, to give you exactly what you need to 
 * A real-time live preview of your post
 * A distraction free environment
 
-[PrettyPress Pro](http://pro.evasivesoftware.com) users also have shortcodes executed and previewed in real-time.
+[PrettyPress Pro][http://pro.evasivesoftware.com] users also have shortcodes executed and previewed in real-time.
 
 ##Live preview window, as you type
 
@@ -59,20 +59,30 @@ Check that your theme is correctly using the_title_attribute for title="" attrib
 
 = My shortcodes don't execute in the preview window =
 
-Live shortcode previews are only available to [PrettyPress Pro](http://pro.evasivesoftware.com) users.
+Live shortcode previews are only available to [PrettyPress Pro][http://pro.evasivesoftware.com] users.
 
 == Screenshots ==
 
-1. PrettyPress in markdown mode.
-2. PrettyPress using TinyMCE.
+1. The PrettyPress live preview layout.
+2. PrettyPress live preview is resizable.
+3. PrettyPress in markdown mode
 
 == Changelog ==
+
+= 1.1.1 =
+* Fixed bug where quick edit wouldn't escape HTML characters on title (Thanks Jake Jackson).
+* Modified markd.js to prevent automatic URL additions, which breaks shortcode previews.
+* Added automatic update checking (Pro only).
+* Fixed TinyMCE auto resizing bug.
+* Fixed composition / preview window resizing bug.
+* "Disable markdown" option has been restored.
+* Fixed various TinyMCE css bugs
 
 = 1.1.0 =
 * New version release, major changes
 * Complete javascript rewrite. Dropped 95% of jQuery reliance for speed and performance benefits.
 * 24+ bug fixes, mostly related to swapping between editors.
-* [PrettyPress Pro](http://pro.evasivesoftware.com) launched.
+* [PrettyPress Pro][http://pro.evasivesoftware.com] launched.
 * Added live shortcode previews (Pro only).
 * Compatibility with Wordpress 4.0.
 * Now delivering minified css/js.

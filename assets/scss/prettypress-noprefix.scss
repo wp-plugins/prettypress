@@ -15,7 +15,7 @@
 	.prettypress_header_menu {
 		position: fixed;
 		z-index: 9999999;
-		width: 50%; 
+		width: 50%;
 		height: 50px;
 		padding: 10px 20px;
 		-moz-box-sizing: border-box;
@@ -90,7 +90,7 @@
 			display: block;
 			width: 100%;
 			box-sizing: border-box;
-			font-size: 20px; 
+			font-size: 20px;
     	padding: 0.4em 0.5em;
     	border-style: none;
     	background: #eee;
@@ -101,7 +101,7 @@
 			display: block;
 			width: 100%;
 			box-sizing: border-box;
-			font-size: 16px; 
+			font-size: 16px;
     	padding: 0.4em 0.5em;
     	margin: 0;
     	border-style: none;
@@ -244,6 +244,7 @@
 	z-index: -1;
 	margin-top: 0;
 	opacity: 0;
+	visibility: hidden;
 	transition: all 0.2s;
 
 	a {
@@ -265,17 +266,21 @@
 		padding: 0em 1em 0em 1.75em;
 		font-size: 14px;
 	}
+	a.hidden {
+		display: none!important;
+	}
 }
 
 .prettypress_menu_active {
 	margin-top: 12px;
 	z-index: 999999999999;
 	opacity: 1;
+	visibility: visible;
 }
 
 .prettypress_menu:before {
-	width: 0; 
-	height: 0; 
+	width: 0;
+	height: 0;
 	border-left: 10px solid transparent;
 	border-right: 10px solid transparent;
 	border-bottom: 10px solid #222;
@@ -321,21 +326,33 @@
 	display: none;
 }
 
+.prettypress_disabled_editor {
+	display: none;
+}
+
 
 //Hacky CSS for TinyMCE support.
 .media-modal {
 	z-index: 9999999999999999999999999999999999999999!important;
 }
 
-.mce-menu {
+.mce-menu, .mce-popover, .mce-floatpanel {
 	z-index: 9999999999999999999999999999999999999999!important;
 }
-
 
 #prettypress_tinymce_ifr {
 	max-height: 85%;
 }
 
 #wp-link-wrap {
+	z-index: 9999999999999999999999999999999999999999!important;
+}
+
+.mce-ico mce-i-fullscreen {
+	display: none!important;
+}
+
+//Hacky support for various plugins, as requested via support.
+.media-modal, #TB_window, #TB_overlay {
 	z-index: 9999999999999999999999999999999999999999!important;
 }

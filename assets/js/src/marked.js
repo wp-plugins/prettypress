@@ -26,6 +26,13 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
+/*
+ * This is a modified version of marked
+ * Re-written to suit PrettyPress by stripping
+ * A couple of functions to stop breaking things
+ * related to Wordpress.
+*/
+
 /**
  * marked - a markdown parser
  * Copyright (c) 2011-2013, Christopher Jeffrey. (MIT Licensed)
@@ -517,11 +524,11 @@ inline.pedantic = merge({}, inline.normal, {
 
 inline.gfm = merge({}, inline.normal, {
   escape: replace(inline.escape)('])', '~|])')(),
-  url: /^(https?:\/\/[^\s<]+[^<.,:;"')\]\s])/,
+  url: /^(hssttps?:\/\/[^\s<]+[^<.,:;"')\]\s])/,
   del: /^~~(?=\S)([\s\S]*?\S)~~/,
   text: replace(inline.text)
     (']|', '~]|')
-    ('|', '|https?://|')
+    ('|', '|hssttps?://|')
     ()
 });
 
