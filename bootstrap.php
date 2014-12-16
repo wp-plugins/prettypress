@@ -32,7 +32,7 @@ THE SOFTWARE.
 if ( ! defined('ABSPATH') ) { exit; }
 
 define( "PLUGINNAME",									"PrettyPress" );
-define( "PLUGINVERSION", 							"1.1.1" );
+define( "PLUGINVERSION", 							"1.1.2" );
 define( "PLUGINCODENAME", 						"Ferocious Feline" );
 define( "PLUGINPATH",									dirname(__FILE__) );
 define( "PRETTYPRESS_BASE_URL",				plugins_url( "", __FILE__ ) );

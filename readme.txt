@@ -3,8 +3,8 @@ Contributors: evasivesoftware
 Donate link: http://pro.evasivesoftware.com/
 Tags: publishing, posting, live, preview, post interface, ghost, markdown
 Requires at least: 3.5
-Tested up to: 4.0
-Stable tag: 1.1.1
+Tested up to: 4.1
+Stable tag: 1.1.2
 License: MIT
 License URI: http://opensource.org/licenses/MIT
 
@@ -13,7 +13,7 @@ PrettyPress adds a sleek, modern publishing interface to Wordpress to help you w
 
 The visual editor and html is also supported.
 
-[PrettyPress Pro][http://pro.evasivesoftware.com] users can unlock real-time shortcode previews to really enhance your work flow.
+[PrettyPress Pro](http://pro.evasivesoftware.com "PrettyPress Pro") users can unlock real-time shortcode previews to really enhance your work flow.
 
 == Description ==
 
@@ -26,7 +26,7 @@ It rids distractions and bloated features, to give you exactly what you need to 
 * A real-time live preview of your post
 * A distraction free environment
 
-[PrettyPress Pro][http://pro.evasivesoftware.com] users also have shortcodes executed and previewed in real-time.
+[PrettyPress Pro](http://pro.evasivesoftware.com "PrettyPress Pro") users also have shortcodes executed and previewed in real-time.
 
 ##Live preview window, as you type
 
@@ -68,6 +68,9 @@ Live shortcode previews are only available to [PrettyPress Pro][http://pro.evasi
 3. PrettyPress in markdown mode
 
 == Changelog ==
+
+= 1.1.2 =
+* Minor testing and future proofing for WP 4.1.
 
 = 1.1.1 =
 * Fixed bug where quick edit wouldn't escape HTML characters on title (Thanks Jake Jackson).
@@ -125,6 +128,9 @@ Live shortcode previews are only available to [PrettyPress Pro][http://pro.evasi
 * Fixed live preview window resize speed
 
 == Upgrade Notice ==
+
+= 1.1.2 =
+Minor future proofing for WP 4.1.
 
 = 1.1.0 =
 The latest release of PrettyPress has a ground up re-write of the core javascript, aimed at speed and performance enhancements. Live shortcode previews are now supported for PrettyPress Pro users.
